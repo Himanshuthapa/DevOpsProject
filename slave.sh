@@ -1,16 +1,10 @@
-sudo yum update -y
-sudo yum install java-17-amazon-corretto -y
-sudo wget -O /etc/yum.repos.d/jenkins.repo \
-    https://pkg.jenkins.io/redhat-stable/jenkins.repo
-sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
-sudo yum upgrade -y
-sudo yum install jenkins -y
-[ec2-user@ip-172-31-33-137 ~]$ cat slave.sh 
-sudo yum update -y
+ sudo yum update -y
 sudo dnf install java-17-amazon-corretto -y
 sudo yum install -y docker
 sudo systemctl enable docker
 sudo systemctl start docker
+sudo usermod -aG docker $USER
+newgrp docker
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
