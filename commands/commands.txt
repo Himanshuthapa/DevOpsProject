@@ -1,0 +1,32 @@
+terraform commands:
+
+terraform init
+terraform validate
+terraform fmt
+terraform plan
+terraform apply
+
+
+ansbile commands:
+
+# for adding ansible.cfg file (run this command as root user)
+sudo ansible-config init --disable -t all > ansible.cfg
+
+# create hosts file for storing all ip addresses
+
+ansible-playbook configuration.yaml --syntax-check
+ansible-playbook configuration.yaml --check
+ansible-playbook configuration.yaml
+
+kubernetes commands:
+
+#for creating cluster
+
+sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=172.31.15.152 --cri-socket unix:///var/run/cri-dockerd.sock
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/tigera-operator.yaml
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/custom-resources.yaml -O
+kubectl create -f custom-resources.yaml
+  
